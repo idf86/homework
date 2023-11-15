@@ -10,6 +10,7 @@ Feature: Target Circle and Cart
     Then Verify Birthday box
     Then Verify Community box
     Then Verify Partnerships box
+    Then Verify all boxes are present
     Then Verify user can search
     Then Verify product can be added to cart
     Then Verify user can checkout

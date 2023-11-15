@@ -29,7 +29,7 @@ def search_earnings(context):
 
 @then('Verify Deals box')
 def search_deals(context):
-    context.deals_box = context.driver.find_element(By.XPATH, "//h3[contains(text(),'of deals')]")
+    context.deals_box = context.driver.find_element(By.XPATH, "//h3[contains(text(), 'Hundreds')]")
 
 
 @then('Verify Birthday box')
@@ -44,19 +44,21 @@ def search_community(context):
 
 @then('Verify Partnerships box')
 def search_community(context):
-    context.partnership_box = context.driver.find_element(By.XPATH, "//h3[contains(text(),'partnerships')]")
+    context.partnership_box = context.driver.find_element(By.XPATH, "//h3[contains(text(),'Partnerships')]")
 
 
-if context.earnings_box and context.deals_box and context.birthday_box and context.community_box and context.partnership_box:
-    print("Test case passed!")
-else:
-    print("Error: One of these boxes was not verified.")
+@then('Verify all boxes are present')
+def verify_all_boxes(context):
+    if context.earnings_box and context.deals_box and context.birthday_box and context.community_box and context.partnership_box:
+        print("Test case passed!")
+    else:
+        print("Error: One of these boxes was not verified.")
 
 
 @then('Verify user can search')
 def step_search(context):
-    search_input = context.browser.find_element(By.ID, "search")
-    search_input.send_keys("pokemon")
+    search_input = context.driver.find_element(By.ID, "search")
+    search_input.send_keys("Eevee Evolution Building Set")
     context.driver.find_element(By.CSS_SELECTOR, "[data-test='@web/Search/SearchButton']").click()
     time.sleep(3)
 
@@ -74,9 +76,11 @@ def step_product(context):
 
 @then('Verify user can checkout')
 def verify_checkout(context):
-    cart_icon = context.driver.find_element(By.CSS_SELECTOR, 'a[data-test="@web/CartLink"]')
-    cart_icon.click()
+    view_cart_button_selector = "a[href='/cart']"
+    view_cart_button = context.driver.find_element(By.CSS_SELECTOR, view_cart_button_selector)
+    view_cart_button.click()
     time.sleep(3)
+
 
 
 @then('Verify user can see price of product')
