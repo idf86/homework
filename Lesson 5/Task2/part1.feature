@@ -1,5 +1,5 @@
 # Created by Windy at 11/16/2023
-Feature: Product search and Color selection
+Feature: Product browsing
   # Enter feature description here
 
     Scenario: Verify user can search for clothing and see the options
